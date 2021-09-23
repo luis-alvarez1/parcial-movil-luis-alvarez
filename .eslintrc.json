@@ -39,6 +39,7 @@
     "no-confusing-arrow": "off",
     "no-nested-ternary": "off",
     "prefer-destructuring": "off",
-    "radix": "off"
+    "radix": "off",
+    "react/jsx-filename-extension": "off"
   }
 }
