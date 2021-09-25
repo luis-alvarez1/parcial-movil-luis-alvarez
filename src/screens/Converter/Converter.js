@@ -1,12 +1,22 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { TextInput } from 'react-native-paper';
 
 export const Converter = () => {
+  const [binaryNumber, setBinaryNumber] = useState('');
+
   return (
     <View>
-      <Text>Converter</Text>
+      <TextInput
+        label='Email'
+        value={binaryNumber}
+        onChangeText={(text) => setBinaryNumber(text)}
+        mode='outlined'
+      />
     </View>
   );
 };
 
-// const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {},
+});
