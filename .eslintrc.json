@@ -40,6 +40,8 @@
     "no-nested-ternary": "off",
     "prefer-destructuring": "off",
     "radix": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "no-plusplus": "off",
+    "no-bitwise": "off"
   }
 }

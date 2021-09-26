@@ -1,6 +1,7 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { StyleSheet, View } from 'react-native';
 import { BinaryOperations } from '../../screens/BinaryOperations/BinaryOperations';
 import { Converter } from '../../screens/Converter/Converter';
 import { LogicalBinaryOperations } from '../../screens/LogicalBinaryOperations/LogicalBinaryOperations';

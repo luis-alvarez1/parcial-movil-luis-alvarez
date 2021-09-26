@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { Navigator } from './src/components/Navigator/Navigator';
+import { Navigator } from './components/Navigator/Navigator';
 
 const App = () => {
   return (

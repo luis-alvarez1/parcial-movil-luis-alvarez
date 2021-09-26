@@ -5,10 +5,12 @@ export default {
   color: {
     ...DefaultTheme.colors,
     primary: '#3FC8FF',
-    secondary: '#B34F30',
-    mustardDark: '#A17D16',
-    mustard: '#E6B31E',
-    salmon: '#FF754A',
-    terracotta: '#B34F30',
+    secondary: '#6200EE',
+    purpleLight: '#984FFF',
+    green: '#3EB34A',
+    greenLight: '#52FF63',
+    yellow: '#EDE700',
+    redLight: '#FF407D',
+    red: '#ED004C',
   },
 };
