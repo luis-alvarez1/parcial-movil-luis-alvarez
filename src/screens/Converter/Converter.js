@@ -7,7 +7,7 @@ import {
   TextInput,
   Title,
 } from 'react-native-paper';
-import { styles } from './ConverterStyles';
+import { globalStyles } from '../../core/styles/globalStyles';
 import theme from '../../core/theme/theme';
 import convertHelpers from '../../util/convertHelpers';
 import numbersHelpers from '../../util/numbersHelpers';
@@ -20,7 +20,6 @@ export const Converter = () => {
     decimalNumber: '',
   });
   const [lastChanged, setLastChanged] = useState('');
-
   const handleConvert = () => {
     const convertedValues =
       convertHelpers.convertByLastChanged(
@@ -30,11 +29,9 @@ export const Converter = () => {
     setForm({ ...convertedValues });
   };
 
-  useEffect(() => {});
-
   return (
     <>
-      <Appbar style={styles.appBar}>
+      <Appbar style={globalStyles.appBar}>
         <Appbar.Content
           title='Converter'
           subtitle='Dec, Bin, Oct, Hex'
@@ -46,12 +43,12 @@ export const Converter = () => {
           }}
         />
       </Appbar>
-      <ScrollView style={styles.container}>
+      <ScrollView style={globalStyles.container}>
         <View>
-          <Title style={styles.title}>
+          <Title style={globalStyles.title}>
             Convert Bin, Oct, Hex to Decimal
           </Title>
-          <Paragraph style={styles.description}>
+          <Paragraph style={globalStyles.description}>
             On this screen you&lsquo;re allowed to covert
             decimal numbers to the different programming
             based systems (binary, octal, decimal).
@@ -59,7 +56,7 @@ export const Converter = () => {
             the button.
           </Paragraph>
         </View>
-        <View style={styles.mainContent}>
+        <View style={globalStyles.mainContent}>
           <TextInput
             label='Decimal'
             value={form.decimalNumber}
@@ -171,7 +168,7 @@ export const Converter = () => {
           <Button
             icon='sync'
             mode='contained'
-            style={styles.button}
+            style={globalStyles.button}
             onPress={handleConvert}
           >
             Convert

@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import theme from '../../core/theme/theme';
+import theme from '../theme/theme';
 
-export const styles = StyleSheet.create({
+export const globalStyles = StyleSheet.create({
   container: {
     padding: 15,
   },
