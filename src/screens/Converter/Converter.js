@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import {
   Appbar,
@@ -7,6 +7,7 @@ import {
   TextInput,
   Title,
 } from 'react-native-paper';
+import { numberBasedSystems } from '../../core/constants/systems';
 import { globalStyles } from '../../core/styles/globalStyles';
 import theme from '../../core/theme/theme';
 import convertHelpers from '../../util/convertHelpers';
@@ -28,6 +29,9 @@ export const Converter = () => {
       );
     setForm({ ...convertedValues });
   };
+
+  // TODO: SNACKBAR CON ERROR DE TIPOS NO SON VÁLIDOS
+  // useEffect(() => {}, [form]);
 
   return (
     <>
@@ -61,7 +65,7 @@ export const Converter = () => {
             label='Decimal'
             value={form.decimalNumber}
             onChangeText={(text) => {
-              setLastChanged('decimal');
+              setLastChanged(numberBasedSystems.DECIMAL);
               setForm({ ...form, decimalNumber: text });
             }}
             onFocus={() => {
@@ -69,7 +73,7 @@ export const Converter = () => {
                 form.decimalNumber &&
                 form.decimalNumber.length > 1
               ) {
-                setLastChanged('decimal');
+                setLastChanged(numberBasedSystems.DECIMAL);
                 setForm({
                   ...form,
                   decimalNumber:
@@ -102,11 +106,11 @@ export const Converter = () => {
             label='Binary'
             value={form.binaryNumber}
             onChangeText={(text) => {
-              setLastChanged('binary');
+              setLastChanged(numberBasedSystems.BINARY);
               setForm({ ...form, binaryNumber: text });
             }}
             onFocus={() => {
-              setLastChanged('binary');
+              setLastChanged(numberBasedSystems.BINARY);
               if (
                 form.binaryNumber &&
                 form.binaryNumber.length > 1
@@ -142,10 +146,12 @@ export const Converter = () => {
             label='Octal'
             value={form.octalNumber}
             onChangeText={(text) => {
-              setLastChanged('octal');
+              setLastChanged(numberBasedSystems.OCTAL);
               setForm({ ...form, octalNumber: text });
             }}
-            onFocus={() => setLastChanged('octal')}
+            onFocus={() =>
+              setLastChanged(numberBasedSystems.OCTAL)
+            }
             mode='outlined'
             keyboardType='numeric'
             outlineColor={theme.color.purpleLight}
@@ -155,16 +161,18 @@ export const Converter = () => {
             label='Hex'
             value={form.hexNumber}
             onChangeText={(text) => {
-              setLastChanged('hex');
+              setLastChanged(numberBasedSystems.HEX);
               setForm({ ...form, hexNumber: text });
             }}
-            onFocus={() => setLastChanged('hex')}
+            onFocus={() =>
+              setLastChanged(numberBasedSystems.HEX)
+            }
             mode='outlined'
             keyboardType='numeric'
             outlineColor={theme.color.purpleLight}
             selectTextOnFocus
           />
-          {/* TODO: onLongPress --> tooltip con info */}
+          {/* TODO: onLongPress --> snackbar con info */}
           <Button
             icon='sync'
             mode='contained'

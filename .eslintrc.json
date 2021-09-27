@@ -42,6 +42,7 @@
     "radix": "off",
     "react/jsx-filename-extension": "off",
     "no-plusplus": "off",
-    "no-bitwise": "off"
+    "no-bitwise": "off",
+    "react/jsx-curly-newline": "off"
   }
 }

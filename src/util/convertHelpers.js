@@ -1,9 +1,10 @@
+import { numberBasedSystems } from '../core/constants/systems';
 import numbersHelpers from './numbersHelpers';
 
 const convertByLastChanged = (lastChanged, form) => {
   const convertedValues = {};
   switch (lastChanged) {
-    case 'decimal':
+    case numberBasedSystems.DECIMAL:
       convertedValues.decimalNumber =
         numbersHelpers.deformatDecimal(form.decimalNumber);
       if (
@@ -39,7 +40,7 @@ const convertByLastChanged = (lastChanged, form) => {
 
       return convertedValues;
 
-    case 'binary':
+    case numberBasedSystems.BINARY:
       convertedValues.binaryNumber =
         numbersHelpers.deformatBinary(form.binaryNumber);
 
@@ -77,7 +78,7 @@ const convertByLastChanged = (lastChanged, form) => {
 
       return convertedValues;
 
-    case 'octal':
+    case numberBasedSystems.OCTAL:
       convertedValues.octalNumber = form.octalNumber;
 
       if (
@@ -114,7 +115,7 @@ const convertByLastChanged = (lastChanged, form) => {
 
       return convertedValues;
 
-    case 'hex':
+    case numberBasedSystems.HEX:
       convertedValues.hexNumber = form.hexNumber;
       if (
         numbersHelpers.isHexNumber(

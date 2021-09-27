@@ -39,7 +39,7 @@ const convertDecimalToBinary = (number) => {
   if (typeof number !== 'number') {
     number = parseInt(number);
   }
-  return (number >>> 0).toString(2);
+  return number.toString(2);
 };
 const convertDecimalToOctal = (number) => {
   if (typeof number !== 'number') {

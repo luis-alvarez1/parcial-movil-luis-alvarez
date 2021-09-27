@@ -1,7 +1,6 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { StyleSheet, View } from 'react-native';
 import { BinaryOperations } from '../../screens/BinaryOperations/BinaryOperations';
 import { Converter } from '../../screens/Converter/Converter';
 import { LogicalBinaryOperations } from '../../screens/LogicalBinaryOperations/LogicalBinaryOperations';
@@ -31,20 +30,6 @@ export function Navigator() {
         component={Converter}
       />
       <Tab.Screen
-        name='LogicalBinaryOperations'
-        options={{
-          tabBarLabel: 'Logical Binary Operations',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name='calculator'
-              color={color}
-              size={26}
-            />
-          ),
-        }}
-        component={LogicalBinaryOperations}
-      />
-      <Tab.Screen
         name='BinaryOperations'
         options={{
           tabBarLabel: 'Binary Operations',
@@ -57,6 +42,20 @@ export function Navigator() {
           ),
         }}
         component={BinaryOperations}
+      />
+      <Tab.Screen
+        name='LogicalBinaryOperations'
+        options={{
+          tabBarLabel: 'Logical Binary Operations',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name='calculator'
+              color={color}
+              size={26}
+            />
+          ),
+        }}
+        component={LogicalBinaryOperations}
       />
     </Tab.Navigator>
   );
