@@ -1,24 +1,25 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { RadioButton } from 'react-native-paper';
-import { binaryOperationsOptions } from '../../../core/constants/binaryOperations';
-import stringsHelpers from '../../../util/stringsHelpers';
-import { binaryOperationsStyles } from '../BinaryOperationsStyles';
+
+import stringsHelpers from '../../util/stringsHelpers';
+import { selectOperationstyles } from './SelectOperationstyles';
 
 export const SelectOperation = ({
   setSelected,
   selected,
+  options,
 }) => {
   return (
     <>
       <View
-        style={binaryOperationsStyles.selectionContainer}
+        style={selectOperationstyles.selectionContainer}
       >
-        {binaryOperationsOptions.map((opt) => {
+        {options.map((opt) => {
           return (
             <View
               key={opt}
-              style={binaryOperationsStyles.radioItem}
+              style={selectOperationstyles.radioItem}
             >
               <RadioButton
                 status={

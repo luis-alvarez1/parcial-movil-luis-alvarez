@@ -9,13 +9,16 @@ import {
   Title,
 } from 'react-native-paper';
 import { ErrorSnackbar } from '../../components/ErrorSnackbar/ErrorSnackbar';
-import { binaryOperations } from '../../core/constants/binaryOperations';
+import {
+  binaryOperations,
+  binaryOperationsOptions,
+} from '../../core/constants/binaryOperations';
 import { globalStyles } from '../../core/styles/globalStyles';
 import theme from '../../core/theme/theme';
 import binaryOperationsHelpers from '../../util/binaryOperationsHelpers';
 import numbersHelpers from '../../util/numbersHelpers';
 import { binaryOperationsStyles } from './BinaryOperationsStyles';
-import { SelectOperation } from './SelectOperation/SelectOperation';
+import { SelectOperation } from '../../components/SelectOperation/SelectOperation';
 
 export const BinaryOperations = () => {
   const [form, setForm] = useState({
@@ -56,7 +59,7 @@ export const BinaryOperations = () => {
         });
       } else {
         setSnackbarMessage(
-          'One or both values are not valid. Please, check again.',
+          'One or both values are not valid. Numbers must be in binary format. Please, check again.',
         );
         setSnackbarShown(true);
       }
@@ -118,6 +121,7 @@ export const BinaryOperations = () => {
           <SelectOperation
             selected={operation}
             setSelected={setOperation}
+            options={binaryOperationsOptions}
           />
           <Divider style={binaryOperationsStyles.divider} />
           <TextInput
@@ -125,7 +129,7 @@ export const BinaryOperations = () => {
             value={form.result}
             mode='outlined'
             keyboardType='numeric'
-            outlineColor={theme.color.primary}
+            outlineColor={theme.color.green}
             editable={false}
             selectTextOnFocus
           />
