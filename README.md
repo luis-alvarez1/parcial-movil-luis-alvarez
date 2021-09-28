@@ -2,7 +2,7 @@
 
 ## Steps to run the mobile app
 
-1.  Make sure you have installed wether `npm` or `yarn` and some Android emulator (or physical device set up) running.
+1.  Make sure you have installed wether `npm` or `yarn` and some **Android emulator (or physical device set up) running**.
 2.  Install all the NPM packages and dependencies with the next command (it'll take some time so, please, be patient).
 
     >
