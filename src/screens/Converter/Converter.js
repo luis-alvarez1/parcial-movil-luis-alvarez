@@ -213,7 +213,6 @@ export const Converter = () => {
               setLastChanged(numberBasedSystems.HEX)
             }
             mode='outlined'
-            keyboardType='numeric'
             outlineColor={theme.color.purpleLight}
             selectTextOnFocus
           />
