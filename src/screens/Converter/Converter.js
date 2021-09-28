@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import {
   Appbar,
@@ -7,6 +7,7 @@ import {
   TextInput,
   Title,
 } from 'react-native-paper';
+import { ErrorSnackbar } from '../../components/ErrorSnackbar/ErrorSnackbar';
 import { numberBasedSystems } from '../../core/constants/systems';
 import { globalStyles } from '../../core/styles/globalStyles';
 import theme from '../../core/theme/theme';
@@ -21,6 +22,8 @@ export const Converter = () => {
     decimalNumber: '',
   });
   const [lastChanged, setLastChanged] = useState('');
+  const [snakbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarShown, setSnackbarShown] = useState('');
   const handleConvert = () => {
     const convertedValues =
       convertHelpers.convertByLastChanged(
@@ -30,8 +33,50 @@ export const Converter = () => {
     setForm({ ...convertedValues });
   };
 
-  // TODO: SNACKBAR CON ERROR DE TIPOS NO SON VÁLIDOS
-  // useEffect(() => {}, [form]);
+  const handleLongPress = () => {
+    setSnackbarMessage(
+      "Enter a value on a field and press 'Convert' to convert.",
+    );
+    setSnackbarShown(true);
+  };
+  useEffect(() => {
+    if (
+      form.binaryNumber &&
+      !numbersHelpers.isBinaryNumber(
+        numbersHelpers.deformatBinary(form.binaryNumber),
+      )
+    ) {
+      setSnackbarMessage('Binary number not valid.');
+      setSnackbarShown(true);
+    }
+    if (
+      form.decimalNumber &&
+      !numbersHelpers.isDecimalNumber(
+        numbersHelpers.deformatBinary(form.decimalNumber),
+      )
+    ) {
+      setSnackbarMessage('Decimal number not valid.');
+      setSnackbarShown(true);
+    }
+    if (
+      form.octalNumber &&
+      !numbersHelpers.isOctalNumber(
+        numbersHelpers.deformatBinary(form.octalNumber),
+      )
+    ) {
+      setSnackbarMessage('Octal number not valid.');
+      setSnackbarShown(true);
+    }
+    if (
+      form.hexNumber &&
+      !numbersHelpers.isHexNumber(
+        numbersHelpers.deformatBinary(form.hexNumber),
+      )
+    ) {
+      setSnackbarMessage('Hexadecimal number not valid.');
+      setSnackbarShown(true);
+    }
+  }, [form]);
 
   return (
     <>
@@ -172,17 +217,22 @@ export const Converter = () => {
             outlineColor={theme.color.purpleLight}
             selectTextOnFocus
           />
-          {/* TODO: onLongPress --> snackbar con info */}
           <Button
             icon='sync'
             mode='contained'
             style={globalStyles.button}
             onPress={handleConvert}
+            onLongPress={handleLongPress}
           >
             Convert
           </Button>
         </View>
       </ScrollView>
+      <ErrorSnackbar
+        shown={snackbarShown}
+        setShown={setSnackbarShown}
+        message={snakbarMessage}
+      />
     </>
   );
 };

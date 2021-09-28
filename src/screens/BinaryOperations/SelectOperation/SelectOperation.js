@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { RadioButton } from 'react-native-paper';
-import { binaryOperationsOptions } from '../../core/constants/binaryOperations';
-import stringsHelpers from '../../util/stringsHelpers';
-import { binaryOperationsStyles } from './BinaryOperationsStyles';
+import { binaryOperationsOptions } from '../../../core/constants/binaryOperations';
+import stringsHelpers from '../../../util/stringsHelpers';
+import { binaryOperationsStyles } from '../BinaryOperationsStyles';
 
 export const SelectOperation = ({
   setSelected,

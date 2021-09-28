@@ -8,12 +8,14 @@ import {
   TextInput,
   Title,
 } from 'react-native-paper';
+import { ErrorSnackbar } from '../../components/ErrorSnackbar/ErrorSnackbar';
 import { binaryOperations } from '../../core/constants/binaryOperations';
 import { globalStyles } from '../../core/styles/globalStyles';
 import theme from '../../core/theme/theme';
 import binaryOperationsHelpers from '../../util/binaryOperationsHelpers';
 import numbersHelpers from '../../util/numbersHelpers';
-import { SelectOperation } from './SelectOperation';
+import { binaryOperationsStyles } from './BinaryOperationsStyles';
+import { SelectOperation } from './SelectOperation/SelectOperation';
 
 export const BinaryOperations = () => {
   const [form, setForm] = useState({
@@ -24,27 +26,46 @@ export const BinaryOperations = () => {
   const [operation, setOperation] = useState(
     binaryOperations.ADD,
   );
-  const handleOperate = () => {
-    if (
-      form.firstBinary &&
-      form.firstBinary !== '' &&
-      form.secondBinary &&
-      form.secondBinary !== ''
-    ) {
-      // TODO: IF SON DATOS VÁLIDOS SINO SNACKBAR
-      const operationResult =
-        binaryOperationsHelpers.operateBinary(
-          operation,
-          form,
-        );
-      setForm({
-        ...form,
-        result:
-          numbersHelpers.formatBinary(operationResult),
-      });
-    }
-    // TODO: ELSE ---> SNACKBAR CON ERROR DATOS NECESARIOS
+  const [snakbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarShown, setSnackbarShown] = useState('');
+  const handleLongPress = () => {
+    setSnackbarMessage(
+      'Enter both values, select an operation and press here to see the result',
+    );
+    setSnackbarShown(true);
   };
+  const handleOperate = () => {
+    if (form.firstBinary && form.secondBinary) {
+      if (
+        numbersHelpers.isBinaryNumber(
+          numbersHelpers.deformatBinary(form.firstBinary),
+        ) &&
+        numbersHelpers.isBinaryNumber(
+          numbersHelpers.deformatBinary(form.secondBinary),
+        )
+      ) {
+        const operationResult =
+          binaryOperationsHelpers.operateBinary(
+            operation,
+            form,
+          );
+        setForm({
+          ...form,
+          result:
+            numbersHelpers.formatBinary(operationResult),
+        });
+      } else {
+        setSnackbarMessage(
+          'One or both values are not valid. Please, check again.',
+        );
+        setSnackbarShown(true);
+      }
+    } else {
+      setSnackbarMessage('Both values are required.');
+      setSnackbarShown(true);
+    }
+  };
+
   return (
     <>
       <Appbar style={globalStyles.appBar}>
@@ -98,12 +119,7 @@ export const BinaryOperations = () => {
             selected={operation}
             setSelected={setOperation}
           />
-          <Divider
-            style={{
-              marginVertical: 17,
-              backgroundColor: '#9c9c9c',
-            }}
-          />
+          <Divider style={binaryOperationsStyles.divider} />
           <TextInput
             label='Binary Result'
             value={form.result}
@@ -113,17 +129,22 @@ export const BinaryOperations = () => {
             editable={false}
             selectTextOnFocus
           />
-          {/* TODO: onLongPress --> snackbar con info */}
           <Button
             icon='calculator-variant'
             mode='contained'
             style={globalStyles.button}
             onPress={handleOperate}
+            onLongPress={handleLongPress}
           >
             {operation}
           </Button>
         </View>
       </ScrollView>
+      <ErrorSnackbar
+        shown={snackbarShown}
+        setShown={setSnackbarShown}
+        message={snakbarMessage}
+      />
     </>
   );
 };

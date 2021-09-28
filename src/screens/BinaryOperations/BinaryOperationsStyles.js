@@ -8,4 +8,8 @@ export const binaryOperationsStyles = StyleSheet.create({
   selectionContainer: {
     marginTop: 20,
   },
+  divider: {
+    marginVertical: 17,
+    backgroundColor: '#9c9c9c',
+  },
 });
